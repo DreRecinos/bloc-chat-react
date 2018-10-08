@@ -23,7 +23,7 @@ export class RoomList extends Component {
       <li key={room.key}>{room.name}</li>
     );
     return(
-      <ul>{RoomList}</ul>
+      <ul>{roomList}</ul>
     );
   }
 }
