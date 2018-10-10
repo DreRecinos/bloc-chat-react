@@ -15,11 +15,12 @@ var config = {
   };
   firebase.initializeApp(config);
 
+
   class App extends Component {
     render() {
       return (
         <div>
-          <RoomList firebase={firebase}/>
+          <RoomList firebase = {firebase}/>
         </div>
       );
     }
