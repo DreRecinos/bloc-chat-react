@@ -17,7 +17,7 @@ export class RoomList extends Component {
   }
 
   createRoom(e) {
-   		let myRoomName = this.state.newRoom;
+   		let RoomName = this.state.newRoom;
       this.roomsRef.push({ title: this.state.title });
     this.setState({ title: "" });
   }
@@ -39,7 +39,7 @@ export class RoomList extends Component {
     );
 
     const roomList = this.state.rooms.map((room) =>
-      <li key={room.key}>{room.title}</li>
+      <li key={room.key}>{room.name}{room.title}</li>
     );
 
     return(
