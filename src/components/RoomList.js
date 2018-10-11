@@ -13,11 +13,13 @@ export class RoomList extends Component {
   }
 
   handleChange(e) {
+      e.preventDefault();
       this.setState({ title : e.target.value});
   }
 
   createRoom(e) {
-   		let RoomName = this.state.newRoom;
+      e.preventDefault();
+      let RoomName = this.state.newRoom;
       this.roomsRef.push({ title: this.state.title });
     this.setState({ title: "" });
   }
@@ -31,24 +33,24 @@ export class RoomList extends Component {
   }
 
   render() {
-    const roomForm = (
-      <form onSubmit={this.createRoom}>
-        <input type="text" value={this.state.title} placeholder="New Room Name" onChange={this.handleChange}/>
-        <input type="submit" value="New Chat" />
-      </form>
-    );
+  const roomForm = (
+    <form onSubmit={this.createRoom}>
+      <input type="text" value={this.state.title} placeholder="New Room Name" onChange={this.handleChange}/>
+      <input type="submit" value="New Chat" />
+    </form>
+  );
 
-    const roomList = this.state.rooms.map((room) =>
-      <li key={room.key}>{room.name}{room.title}</li>
-    );
+  const roomList = this.state.rooms.map((room) =>
+    <li key={room.key}>{room.name}{room.title}</li>
+  );
 
-    return(
-      <div>
-        <div>{roomForm}</div>
-        <ul>{roomList}</ul>
-      </div>
-    );
-  }
+  return(
+    <div>
+      <div>{roomForm}</div>
+      <ul>{roomList}</ul>
+    </div>
+  );
+}
 }
 
 export default RoomList;
