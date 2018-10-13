@@ -13,17 +13,19 @@ export class RoomList extends Component {
   }
 
   handleChange(e) {
+      e.preventDefault()
       this.setState({ title : e.target.value});
   }
 
   createRoom(e) {
-   		let RoomName = this.state.newRoom;
+      e.preventDefault();
+      let RoomName = this.state.newRoom;
       this.roomsRef.push({ title: this.state.title });
     this.setState({ title: "" });
   }
 
   componentDidMount() {
-    this.roomsRef.on('child_added', snapshot => {
+      this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) })
