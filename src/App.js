@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
 import { RoomList } from './components/RoomList.js';
-
+import { MessageList } from './components/MessageList.js';
 
 var config = {
     apiKey: "AIzaSyBvygZkwK_68jQZIrdC5tS34toXHUuX0Kw",
@@ -19,22 +18,23 @@ var config = {
   class App extends Component {
     constructor(props) {
       super(props);
-      this.state = {activeRoom: ""};
+      this.state = { activeRoom: "" };
       this.activeRoom = this.activeRoom.bind(this);
     }
 
-  activeRoom(room) {
-    this.setState({ activeRoom: room })
-  }
+    activeRoom(room) {
+      this.setState({ activeRoom: room });
+    }
 
     render() {
-      const showMessages = this.state.activeRoom;
+      const showMessage = this.state.activeRoom;
+
       return (
         <div>
-          <h1>{this.state.activeRoom.title || "Select A Room"}</h1>
+          <h1>{this.state.activeRoom.title || "Room"}</h1>
           <RoomList firebase={firebase} activeRoom={this.activeRoom} />
-          { showMessages ?
-          (<messageList firebase={firebase} activeRoom={this.state.activeRoom.key}/>)
+          { showMessage ?
+          (<MessageList firebase={firebase} activeRoom={this.state.activeRoom.key} />)
           : (null)
           }
         </div>
@@ -43,27 +43,3 @@ var config = {
   }
 
   export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-/*  class App extends Component {
-    render() {
-      return (
-        <div>
-          <RoomList firebase = {firebase}/>
-          <MessageList firebase = {firebase} />
-        </div>
-      );
-    }
-  }
-
-  export default App; */
