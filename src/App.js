@@ -18,24 +18,19 @@ var config = {
   class App extends Component {
     constructor(props) {
       super(props);
-      this.state = { activeRoom: "" };
+      this.state = {activeRoom: ""};
       this.activeRoom = this.activeRoom.bind(this);
     }
-
-    activeRoom(room) {
-      this.setState({ activeRoom: room });
-    }
-
-    render() {
-      const showMessage = this.state.activeRoom;
-
+   activeRoom(room) {
+    this.setState({ activeRoom: room })
+  }
+     render() {
+      const showMessages = this.state.activeRoom;
       return (
         <div>
           <h1>{this.state.activeRoom.title || "Room"}</h1>
           <RoomList firebase={firebase} activeRoom={this.activeRoom} />
-          { showMessage ?
-          (<MessageList firebase={firebase} activeRoom={this.state.activeRoom.key} />)
-          : (null)
+          <MessageList firebase={firebase} activeRoom={this.state.activeRoom.key} />
           }
         </div>
       );
